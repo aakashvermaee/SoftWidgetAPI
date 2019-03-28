@@ -1,8 +1,9 @@
-const { createOrder, getOrder, updateOrder, deleteOrder } = require("./orders");
+const { createOrder, getOrder, getOrders, updateOrder, deleteOrder } = require("./orders");
 
 module.exports = {
   createOrder,
   getOrder,
+  getOrders,
   updateOrder,
   deleteOrder
 };
