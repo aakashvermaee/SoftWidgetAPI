@@ -16,3 +16,6 @@ These can be run by running `npm run test`.
 Contains seed file to pre-populate the database
 These can be run by running `./node_modules/.bin/md-seed run --dropdb`
 For test `NODE_ENV=test ./node_modules/.bin/md-seed run --dropdb`
+
+## Postman collection
+Here is the [link](https://documenter.getpostman.com/view/6127832/S17utSUW#8bc85377-1282-45bb-80d7-ac6ac68cc8e3) to see the APIs in postman collection
