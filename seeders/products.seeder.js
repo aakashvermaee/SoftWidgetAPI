@@ -12,6 +12,16 @@ const data = [
     Silver-bullet touch response system 
     Long lasting rechargeable battery `,
     type: "house-hold"
+  },
+  {
+    name: "SWGen1dx",
+    price: 10,
+    sku: "",
+    description: `The SWGen1dx (conveniently the product SKU) is a revolutionary house-hold product everyone wants. It features a sleek casing with intuitive features.
+    Features include: 
+    Rock-solid audio engagement
+    Silver-bullet touch response system`,
+    type: "house-hold"
   }
 ];
 
