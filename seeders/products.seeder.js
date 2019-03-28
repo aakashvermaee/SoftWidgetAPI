@@ -12,16 +12,6 @@ const data = [
     Silver-bullet touch response system 
     Long lasting rechargeable battery `,
     type: "house-hold"
-  },
-  {
-    name: "Soft Widget Generation 1",
-    price: 10,
-    sku: "SWGen1dx",
-    description: `The SWGen1dx (conveniently the product SKU) is a revolutionary house-hold product everyone wants. It features a sleek casing with intuitive features.
-    Features include: 
-    Rock-solid audio engagement
-    Silver-bullet touch response system`,
-    type: "house-hold"
   }
 ];
 
