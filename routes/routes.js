@@ -4,22 +4,22 @@ const orders = require('../app/orders'),
 const ordersApiRoutes = [
   {
     method: 'POST',
-    url: '/api/createorder',
+    url: '/api/order',
     handler: orders.createOrder
   },
   {
     method: 'GET',
-    url: '/api/getorder/:id',
+    url: '/api/order/:id',
     handler: orders.getOrder
   },
   {
     method: 'PUT',
-    url: '/api/updateorder/:id',
+    url: '/api/order/:id',
     handler: orders.updateOrder
   },
   {
     method: 'DELETE',
-    url: '/api/deleteorder/:id',
+    url: '/api/order/:id',
     handler: orders.deleteOrder
   }
 ];
@@ -27,7 +27,7 @@ const ordersApiRoutes = [
 const productsApiRoutes = [
   {
     method: 'GET',
-    url: '/api/getproducts',
+    url: '/api/products',
     handler: products.getProducts
   }
 ];
