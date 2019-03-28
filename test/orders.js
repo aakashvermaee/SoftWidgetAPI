@@ -4,45 +4,38 @@ process.env.NODE_ENV = 'test';
 let env = require("dotenv").config()
 let db = require("../db/db")
 let mongoose = require("mongoose");
-let Order = require('../app/orders/order');
+let Order = require('../app/orders/order').Order;
 
 //Require the dev-dependencies
 let chai = require('chai');
 let chaiHttp = require('chai-http');
-let server = require('../app');
+let server = require('../app').server;
 let should = chai.should();
-
-
 chai.use(chaiHttp);
-//Our parent block
-describe('Orders', () => {
-  // beforeEach((done) => { //Before each test we empty the database
-  //   Order.remove({}, (err) => { 
-  //    done();           
-  //  });        
-  // });
 
-  /*
-  * Test the /GET route
-  */
+describe('Orders', () => {
+
   describe('/GET order', () => {
-    it('it should GET all the orders', (done) => {
-      chai.request("http::/localhost:5000/api")
-      .get('/getorders')
+    it('it should get an order on the basis of an order number', (done) => {
+      chai.request(server)
+      .get('/api/order/1')
       .end((err, res) => {
         res.should.have.status(200);
-        res.body.should.be.a('array');
-        res.body.length.should.be.eql(0);
         done();
       });
     });
   });
 
   describe('/POST order', () => {
-    it('it should POST an order', (done) => {
+    it('it should create an order', (done) => {
       let order = {
         productName: "SWGen2dx",
         shippingAddress: {
+          address: "#121 Test Apartment",
+          city: "Ghaziabad",
+          state: "UP"
+        },
+        billingAddress: {
           address: "#121 Test Apartment",
           city: "Ghaziabad",
           state: "UP"
@@ -57,25 +50,28 @@ describe('Orders', () => {
         }
       }
       chai.request(server)
-      .post('/orders')
+      .post('/api/orders')
       .send(order)
       .end((err, res) => {
         res.should.have.status(200);
         res.body.should.be.a('object');
-                // res.body.should.have.property('errors');
-                // res.body.errors.should.have.property('pages');
-                res.body.should.have.property('state').eql('pending');
-                res.body.should.have.property('message').eql('Order Created Successfully!');
-                done();
-              });
+        res.body.data.should.have.property('state').eql('pending');
+        res.body.should.have.property('message').eql('Order Created Successfully!');
+        done();
+      });
     });
   });
 
-  describe('/PUT order', () => {
-    it('it should modify an order', (done) => {
-      let order = new Order({
+  describe('/PUT order', (done) => {
+    it('it should modify an order on the basis of an order number', (done) => {
+      let order = {
         productName: "SWGen2dx",
         shippingAddress: {
+          address: "#121 Test Apartment",
+          city: "Ghaziabad",
+          state: "UP"
+        },
+        billingAddress: {
           address: "#121 Test Apartment",
           city: "Ghaziabad",
           state: "UP"
@@ -88,15 +84,14 @@ describe('Orders', () => {
           email: "kumar.navneet@cygrp.com",
           phoneNumber: "9444203020"
         }
-      })
-      order.save((err,order) => {
+      }
+      Order.create(order, (err,data) => {
         chai.request(server)
-        .put('/order/' + order.id)
+        .put('/api/order/' + data.orderNumber)
         .send({quantity: 2})
         .end((err, res) => {
           res.should.have.status(200);
-          res.body.should.be.a('object');
-          res.body.should.have.property('quantity').eql(2);
+          res.body.should.have.property('message').eql('Order Updated Successfully!');
           done();
         });
       });
@@ -104,15 +99,20 @@ describe('Orders', () => {
   });
 
   describe('/DELETE order', () => {
-    it('it should delete an order', (done) => {
-      let order = new Order({
+    it('it should delete an order on the basis of an order number', (done) => {
+      let order = {
         productName: "SWGen2dx",
         shippingAddress: {
           address: "#121 Test Apartment",
           city: "Ghaziabad",
           state: "UP"
         },
-        shippingMethod: "free",
+        billingAddress: {
+          address: "#121 Test Apartment",
+          city: "Ghaziabad",
+          state: "UP"
+        },
+        shippingMethod: "free|premium",
         quantity: 1,
         customer: {
           firstName: "Kumar",
@@ -120,10 +120,10 @@ describe('Orders', () => {
           email: "kumar.navneet@cygrp.com",
           phoneNumber: "9444203020"
         }
-      })
-      order.save((err,order) => {
+      }
+      Order.create(order, (err,data) => {
         chai.request(server)
-        .delete('/order/' + order.id)
+        .delete('/api/order/' + data.orderNumber)
         .end((err, res) => {
           res.should.have.status(200);
           res.body.should.have.property('message').eql('Order Deleted Successfully!');
@@ -132,4 +132,5 @@ describe('Orders', () => {
       });
     });
   });
+
 });
