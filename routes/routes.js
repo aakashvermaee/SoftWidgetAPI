@@ -4,7 +4,7 @@ const orders = require('../app/orders'),
 const ordersApiRoutes = [
   {
     method: 'POST',
-    url: '/api/order',
+    url: '/api/orders',
     handler: orders.createOrder
   },
   {
