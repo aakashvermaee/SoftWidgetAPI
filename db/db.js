@@ -1,21 +1,23 @@
+const config = require("../config/config")
+
 const mongoose = require("mongoose"),
   blueBird = require("bluebird");
 
-switch (process.env.NODE_ENV) {
+switch (config.env) {
   case "test":
-    mongooseConnectTest(process.env.MONGO_URL_TEST);
+    mongooseConnectTest(config.mongoUrlTest);
     break;
   default:
-    mongooseConnectProdOrDev(process.env.MONGO_URL);
+    mongooseConnectProdOrDev(config.mongoUrl);
     break;
 }
 
 async function mongooseConnectProdOrDev(dbUrl) {
   try {
     const authData = {
-      user: process.env.MONGO_USER,
-      pass: process.env.MONGO_PWD,
-      dbName: process.env.MONGO_DB,
+      user: config.mongoUser,
+      pass: config.mongoPassword,
+      dbName: config.mongoDatabase,
       useNewUrlParser: true,
       useCreateIndex: true
     };
@@ -31,9 +33,9 @@ async function mongooseConnectProdOrDev(dbUrl) {
 async function mongooseConnectTest(dbUrl) {
   try {
     const authData = {
-      user: process.env.MONGO_USER_TEST,
-      pass: process.env.MONGO_PWD_TEST,
-      dbName: process.env.MONGO_DB_TEST,
+      user: config.mongoUserTest,
+      pass: config.mongoPasswordTest,
+      dbName: config.mongoDatabaseTest,
       useNewUrlParser: true,
       useCreateIndex: true
     };

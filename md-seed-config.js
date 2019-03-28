@@ -1,8 +1,12 @@
+const config = require("./config/config")
+let mongoUrl;
 
-const mongoURL = process.env.MONGO_URL || "mongodb://root:$123456root@ds125526.mlab.com:25526/htm-softwidgetapi-dev";
-
-// always push mongo connection string in env var
-process.env.MONGO_URL = mongoURL;
+if(config.env == "test") {
+  mongoUrl = config.mongoUrlTest
+}
+else if(config.env == "development") {
+  mongoUrl = config.mongoUrl
+}
 
 const mongooseLib = require("mongoose"),
   ordersSeeder = require("./seeders/orders.seeder"),
@@ -15,7 +19,7 @@ module.exports = {
   mongoose: mongooseLib,
 
   // Export the mongodb url
-  mongoURL: process.env.MONGO_URL,
+  mongoURL: mongoUrl,
 
   /*
     Seeders List

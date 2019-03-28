@@ -1,14 +1,16 @@
 'use strict';
 
+const config = require("./config/config")
+
 // dot-env
-if (process.env.NODE_ENV !== "production")
+if (config.env !== "production")
   require("dotenv").config();
 
 // deps
 const bodyParser = require("body-parser");
 
-const PORT = process.env.PORT,
-  LOGGER = process.env.LOGGER;
+const PORT = config.port,
+  LOGGER = config.logger;
 
 const fastify = require("fastify")({
   logger: LOGGER
