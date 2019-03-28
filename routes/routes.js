@@ -13,6 +13,11 @@ const ordersApiRoutes = [
     handler: orders.getOrder
   },
   {
+    method: 'GET',
+    url: '/api/orders',
+    handler: orders.getOrders
+  },
+  {
     method: 'PUT',
     url: '/api/order/:id',
     handler: orders.updateOrder
