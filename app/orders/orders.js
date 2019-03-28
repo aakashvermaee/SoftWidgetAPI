@@ -36,6 +36,16 @@ const getOrder = async (req, res) => {
   }
 };
 
+const getOrders = async (req, res) => {
+  try {
+    const orders = await Order.find({state: "pending"}).populate("product");
+
+    sendResponse(res, true, "Order Fetched Successfully!", orders);
+  } catch (err) {
+    sendResponse(res, false, "Order Fetch Unsuccessful!", err);
+  }
+};
+
 const updateOrder = async (req, res) => {
   try {
     const id = req.params.id,
@@ -85,6 +95,7 @@ const sendResponse = async (res, status, message, resultOrErr) => {
 module.exports = {
   createOrder,
   getOrder,
+  getOrders,
   updateOrder,
   deleteOrder
 };
