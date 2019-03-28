@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node app.js",
     "dev": "nodemon app.js",
-    "test": "mocha --exit",
+    "test": "mocha --timeout 3000 --exit",
     "seed": "md-seed run"
   },
   "keywords": [],
