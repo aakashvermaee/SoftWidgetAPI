@@ -22,7 +22,8 @@
     "mocha": "^6.0.2",
     "mongodb": "^3.2.2",
     "mongoose": "^5.4.20",
-    "mongoose-data-seed": "^1.0.7"
+    "mongoose-data-seed": "^1.0.7",
+    "mongoose-sequence": "^5.0.1"
   },
   "devDependencies": {
     "nodemon": "^1.18.10"

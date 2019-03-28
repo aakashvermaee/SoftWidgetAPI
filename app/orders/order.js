@@ -1,5 +1,6 @@
 const { mongoose } = require("../../db/db");
 const { Schema } = mongoose;
+const autoIncrement = require("mongoose-sequence")(mongoose)
 
 const orderSchema = new Schema({
   product: {
@@ -47,7 +48,15 @@ const orderSchema = new Schema({
     type: Boolean,
     default: false
   },
-  deletedAt: Date
+  deletedAt: Date,
+  orderNumber: {
+    type: Number,
+    default: 0
+  }
+});
+
+orderSchema.plugin(autoIncrement, {
+  inc_field: 'orderNumber'
 });
 
 exports.Order = mongoose.model("Order", orderSchema);

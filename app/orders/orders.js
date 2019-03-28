@@ -1,5 +1,3 @@
-var ObjectId = require("mongoose").Types.ObjectId;
-
 const { Order } = require("./order");
 
 const createOrder = async (req, res) => {
@@ -20,7 +18,7 @@ const getOrder = async (req, res) => {
   try {
     const id = req.params.id;
     const order = await Order.find({
-      _id: id
+      orderNumber: id
     }).populate("product");
 
     if (order[0].isDeleted) {
@@ -51,8 +49,8 @@ const updateOrder = async (req, res) => {
     const id = req.params.id,
       updateOrderData = req.body;
 
-    const result = await Order.findByIdAndUpdate(
-      id,
+    const result = await Order.updateOne(
+      { orderNumber: id },
       { $set: updateOrderData },
       { new: true }
     );
@@ -67,8 +65,8 @@ const deleteOrder = async (req, res) => {
   try {
     const id = req.params.id;
 
-    const result = await Order.findByIdAndUpdate(
-      id,
+    const result = await Order.updateOne(
+      { orderNumber: id },
       {
         $set: {
           isDeleted: true,
