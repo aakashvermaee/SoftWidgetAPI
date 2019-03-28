@@ -12,7 +12,7 @@ You can add or modify the configuration in `config/config.js` or can reference e
 Contains various test suites of the API.
 These can be run by running `npm run test`.
 
-## /seed
+## /seeders
 Contains seed file to pre-populate the database.
 These can be run by running `./node_modules/.bin/md-seed run --dropdb`
 For test `NODE_ENV=test ./node_modules/.bin/md-seed run --dropdb`
