@@ -9,7 +9,6 @@ else if(config.env == "development") {
 }
 
 const mongooseLib = require("mongoose"),
-  ordersSeeder = require("./seeders/orders.seeder"),
   productsSeeder = require("./seeders/products.seeder");
 
 mongooseLib.Promise = global.Promise || Promise;
@@ -27,7 +26,6 @@ module.exports = {
     order is important
   */
   seedersList: {
-    productsSeeder,
-    ordersSeeder
+    productsSeeder
   }
 };
