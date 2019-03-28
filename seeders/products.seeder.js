@@ -3,9 +3,9 @@ const { Seeder } = require("mongoose-data-seed"),
 
 const data = [
   {
-    name: "SWGen2dx",
+    name: "Soft Widget Generation 2",
     price: 30,
-    sku: "",
+    sku: "SWGen2dx",
     description: `The SWGen2dx (conveniently the product SKU) is a revolutionary house-hold product everyone wants. It features a sleek casing with intuitive features.
     Features include: 
     Rock-solid audio engagement
@@ -14,9 +14,9 @@ const data = [
     type: "house-hold"
   },
   {
-    name: "SWGen1dx",
+    name: "Soft Widget Generation 1",
     price: 10,
-    sku: "",
+    sku: "SWGen1dx",
     description: `The SWGen1dx (conveniently the product SKU) is a revolutionary house-hold product everyone wants. It features a sleek casing with intuitive features.
     Features include: 
     Rock-solid audio engagement
