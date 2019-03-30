@@ -36,7 +36,7 @@ const getOrder = async (req, res) => {
 
 const getOrders = async (req, res) => {
   try {
-    const orders = await Order.find({state: "pending"}).populate("product");
+    const orders = await Order.find({state: "pending", isDeleted: false}).populate("product");
 
     sendResponse(res, true, "Order Fetched Successfully!", orders);
   } catch (err) {
